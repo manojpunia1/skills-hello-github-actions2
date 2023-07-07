@@ -11,7 +11,7 @@ on:
     branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  #workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,6 +25,12 @@ jobs:
         run: |
           echo 'multi-line script in pre-build'
           echo 'Hello, world! in pre-build'
+      - name: Append Current Date & Time to Log
+        run: date >> /logs/publish_pre-build.log 
+        shell: bash
+      - name: Commit change to log file
+        run: git commit -am "Newly published pre-build content"
+        shell: bash
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -54,4 +60,10 @@ jobs:
       - name: |
           echo 'multi-line script in post-build'
           echo 'Hello, world! in post-build'
+      - name: Append Current Date & Time to Log
+        run: date >> /logs/publish_post-build.log 
+        shell: bash
+      - name: Commit change to log file
+        run: git commit -am "Newly published post-build content"
+        shell: bash
         
