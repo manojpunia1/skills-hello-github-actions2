@@ -15,6 +15,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  pre-build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      # Runs a single command using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo 'multi-line script in pre-build'
+          echo 'Hello, world! in pre-build'
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -34,3 +44,14 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+   # This workflow contains a second job called "postbuild"
+  post-build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      # Runs a single command using the runners shell
+      - name: |
+          echo 'multi-line script in post-build'
+          echo 'Hello, world! in post-build'
+        
