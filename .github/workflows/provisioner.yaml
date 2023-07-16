@@ -1,0 +1,30 @@
+name: provisioner
+
+on:
+  push:
+    branches:
+      - main
+#    paths:
+#     - /development/*
+env:
+AZURE_RESOURCE_GROUP: vijaypostgresqldb               # set this to your Azure Resource group's name  
+  AZURE_LOCATION: eastus                         # set this to your azure resource group location   
+  AZURE_POSTGRESQL_SERVERNAME: vijaypostgresqlserver         # set postgresql Server  
+  AZURE_POSTGRESQL_DATABASE: vijaypostgresdb    # set postgresql Databsae
+  AZURE_POSTGRESQL_FIREWALL_IP: 0.0.0.0    # set this to all Azure IPs
+jobs:
+pre-build:
+  name: pre-build | env setup
+  runs-on: ubuntu-latest
+  steps:
+  - name: 
+build:
+  name: build 
+  runs-on: ubuntu-latest
+  steps:
+  - name: build dev env
+post-build:
+  name: post-build
+  runs-on: ubuntu-latest
+  steps:
+  - name: post-build
